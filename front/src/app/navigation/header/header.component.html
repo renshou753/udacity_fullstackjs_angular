@@ -9,19 +9,26 @@
     </button>
     <span>MyStore</span>
     <span class="ms-spacer"></span>
-    <button
-      mat-icon-button
-      class="ms-icon favorite-icon"
-      aria-label="icon-button with heart icon"
-    >
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      class="ms-icon"
-      aria-label="icon-button with share icon"
-    >
-      <mat-icon>share</mat-icon>
-    </button>
+
+    <div *ngIf="isLoggedIn">
+      <button
+        mat-icon-button
+        class="ms-icon"
+        aria-label="icon-button with logout icon"
+      >
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+
+    <!-- Header template for logged out user -->
+    <div *ngIf="!isLoggedIn">
+      <button
+        mat-icon-button
+        class="ms-icon favorite-icon"
+        aria-label="icon-button with login icon"
+      >
+        <mat-icon>login</mat-icon>
+      </button>
+    </div>
   </mat-toolbar>
 </p>

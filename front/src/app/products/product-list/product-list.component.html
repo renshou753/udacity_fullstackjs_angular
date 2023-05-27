@@ -1,5 +1,10 @@
-<mat-grid-list cols="3" rowHeight="300px">
-  <mat-grid-tile *ngFor="let card of cardList">
-    <app-product [title]="card.title" [content]="card.content"></app-product>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="cards-container">
+  <div class="card-wrapper" *ngFor="let p of productList">
+    <app-product
+      [name]="p.name"
+      [price]="p.price"
+      [category]="p.category"
+      [imageUrl]="p.imageUrl"
+    ></app-product>
+  </div>
+</div>

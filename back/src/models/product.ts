@@ -7,12 +7,20 @@ export type Product = {
   category_id: number;
 };
 
+export type ProductDetail = {
+  name: string;
+  price: number;
+  category_id: number;
+  category: string;
+};
+
 export class ProductStore {
-  async index(): Promise<Product[]> {
+  async index(): Promise<ProductDetail[]> {
     try {
       // @ts-ignore
       const conn = await Client.connect();
-      const sql = "SELECT name, price, category_id FROM product";
+      const sql =
+        "SELECT p.name, p.price, p.category_id, c.name as category FROM product p left join category c on p.category_id = c.id";
 
       const result = await conn.query(sql);
 
