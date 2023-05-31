@@ -8,6 +8,7 @@ describe("User model test", () => {
       first_name: "tony",
       last_name: "li",
       password: "test123",
+      username: "tony",
     });
     expect(result.first_name).toEqual("tony");
   });
@@ -21,7 +22,7 @@ describe("User model test", () => {
   });
 
   it("should return one user", async () => {
-    const result = await store.show("1");
+    const result = await store.show("tony");
     expect(result.first_name).toEqual("tony");
   });
 });

@@ -6,6 +6,7 @@ export type User = {
   first_name: string;
   last_name: string;
   password: string;
+  username: string;
 };
 
 const { PEPPER, SALTROUND } = process.env;
@@ -29,7 +30,7 @@ export class UserStore {
 
   async show(id: string): Promise<User> {
     try {
-      const sql = "SELECT * FROM public.user WHERE id=($1)";
+      const sql = "SELECT * FROM public.user WHERE username=($1)";
       // @ts-ignore
       const conn = await Client.connect();
 
@@ -46,7 +47,7 @@ export class UserStore {
   async create(b: User): Promise<User> {
     try {
       const sql =
-        "INSERT INTO public.user (first_name, last_name, password) VALUES($1, $2, $3) RETURNING *";
+        "INSERT INTO public.user (first_name, last_name, password, username) VALUES($1, $2, $3, $4) RETURNING *";
 
       const hash = bcrypt.hashSync(
         b.password + PEPPER,
@@ -56,7 +57,12 @@ export class UserStore {
       // @ts-ignore
       const conn = await Client.connect();
 
-      const result = await conn.query(sql, [b.first_name, b.last_name, hash]);
+      const result = await conn.query(sql, [
+        b.first_name,
+        b.last_name,
+        hash,
+        b.username,
+      ]);
 
       const user = result.rows[0];
 
@@ -71,9 +77,12 @@ export class UserStore {
   async authenticate(id: string, password: string): Promise<User | null> {
     // @ts-ignore
     const conn = await Client.connect();
-    const sql = "SELECT id, password FROM public.user WHERE id=($1)";
+    const sql =
+      "SELECT username, password FROM public.user WHERE username=($1)";
 
     const result = await conn.query(sql, [id]);
+
+    console.log(result);
 
     if (result.rows.length) {
       const user = result.rows[0];
