@@ -28,3 +28,9 @@ npm run start
 username: tony
 password: 123123
 ```
+
+### Description
+
+e-commerce website – an application that allows users to view a list of available products to purchase, add them to a shopping cart, and ultimately complete the checkout process.
+
+Basic jwt authentication system is implemented as well, jwt token is saved in local storage and sent through api if required.
