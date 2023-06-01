@@ -15,7 +15,7 @@ CREATE TABLE "user" (
   "first_name" varchar,
   "last_name" varchar,
   "password" varchar,
-  "username" varchar,
+  "username" varchar
 );
 
 CREATE TABLE "order" (

@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+}
+
+.left-side {
+  flex: 1;
+  padding: 20px;
+}
+
+.right-side {
+  flex: 1;
+  padding: 20px;
+}
+.cartImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card-container {
+  display: flex;
+}
+
+.card-left {
+  flex: 1;
+}
+
+.card-right {
+  flex: 1;
+}

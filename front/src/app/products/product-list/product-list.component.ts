@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { ProductsService } from '../products.service'
-
+import { Product } from '../product.interface'
 import { environment } from '../../../environments/environment'
 
 @Component({
@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment'
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent {
-  productList: any
+  productList: Product[] = []
 
   constructor(private productService: ProductsService) {}
 

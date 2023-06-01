@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { NavigationModule } from './navigation/navigation.module'
 import { ProductsModule } from './products/products.module'
 import { AuthModule } from './auth/auth.module'
-
+import { CartModule } from './cart/cart.module'
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +17,7 @@ import { AuthModule } from './auth/auth.module'
     NavigationModule,
     ProductsModule,
     AuthModule,
+    CartModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

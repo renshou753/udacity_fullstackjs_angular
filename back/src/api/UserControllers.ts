@@ -40,8 +40,16 @@ export const authenticate = async (req: Request, res: Response) => {
   try {
     const user = await store.authenticate(req.body.id, req.body.password);
 
-    const token = jwt.sign({ user: user }, process.env.TOKEN_SECRET as string);
-    res.json(token);
+    if (user != null) {
+      const token = jwt.sign(
+        { username: user },
+        process.env.TOKEN_SECRET as string
+      );
+      res.json(token);
+    } else {
+      res.status(401);
+      res.json("Unauthorized");
+    }
   } catch (err) {
     res.status(400);
     res.json(err);

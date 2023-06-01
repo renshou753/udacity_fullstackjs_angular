@@ -15,4 +15,9 @@ export class ProductsService {
     const apiUrl = `${environment.apiUrl}/api/products` // Replace with the actual API URL
     return this.http.get(apiUrl)
   }
+
+  getProduct(id: string): Observable<any> {
+    const apiUrl = `${environment.apiUrl}/api/products/${id}` // Replace with the actual API URL
+    return this.http.get(apiUrl)
+  }
 }

@@ -20,7 +20,7 @@ export class ProductStore {
       // @ts-ignore
       const conn = await Client.connect();
       const sql =
-        "SELECT p.name, p.price, p.category_id, c.name as category FROM product p left join category c on p.category_id = c.id";
+        "SELECT p.id, p.name, p.price, p.category_id, c.name as category FROM product p left join category c on p.category_id = c.id";
 
       const result = await conn.query(sql);
 
@@ -34,7 +34,8 @@ export class ProductStore {
 
   async show(id: string): Promise<Product> {
     try {
-      const sql = "SELECT name, price, category_id FROM product WHERE id=($1)";
+      const sql =
+        "SELECT id, name, price, category_id FROM product WHERE id=($1)";
       // @ts-ignore
       const conn = await Client.connect();
 

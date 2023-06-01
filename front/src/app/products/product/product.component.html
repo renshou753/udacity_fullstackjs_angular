@@ -1,6 +1,6 @@
 <div class="card-container">
   <mat-card>
-    <img src="{{ imageUrl }}" alt="Card Image" />
+    <img src="{{ imageUrl }}" alt="Card Image" (click)="goToProductDetail()" />
     <mat-card-header>
       <mat-card-title>{{ name }} / {{ category }}</mat-card-title>
     </mat-card-header>
@@ -9,7 +9,7 @@
 
       <mat-form-field>
         <mat-label>Quantity</mat-label>
-        <mat-select>
+        <mat-select [(ngModel)]="quantity">
           <mat-option
             *ngFor="let quantity of quantityOptions"
             [value]="quantity"

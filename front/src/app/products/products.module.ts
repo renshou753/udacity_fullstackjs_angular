@@ -7,12 +7,19 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button'
+import { FormsModule } from '@angular/forms'
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 import { ProductListComponent } from './product-list/product-list.component'
 import { ProductComponent } from './product/product.component'
+import { ProductDetailComponent } from './product-detail/product-detail.component'
 
 @NgModule({
-  declarations: [ProductListComponent, ProductComponent],
+  declarations: [
+    ProductListComponent,
+    ProductComponent,
+    ProductDetailComponent,
+  ],
   imports: [
     CommonModule,
     MatCardModule,
@@ -22,6 +29,8 @@ import { ProductComponent } from './product/product.component'
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
+    FormsModule,
+    MatSnackBarModule,
   ],
   exports: [ProductListComponent],
 })

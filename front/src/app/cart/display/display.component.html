@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="left-side">
+    <h2>Shopping Cart</h2>
+    <h4>Total Amount: {{ totalPrice }}</h4>
+    <div *ngFor="let order of orders">
+      <mat-card class="card-container">
+        <mat-card-header>
+          <mat-card-title
+            >Product Name: {{ order.product.name }}</mat-card-title
+          >
+        </mat-card-header>
+        <img
+          class="cartImage card-left"
+          src="{{ order.product.imageUrl }}"
+          alt="Card Image"
+        />
+
+        <mat-card-content class="card-right">
+          <p>
+            Price: ${{ order.product.price }}, Quantity: {{ order.quantity }}
+          </p>
+          <button mat-icon-button color="warn" (click)="removeFromCart(order)">
+            <mat-icon>remove_shopping_cart</mat-icon>
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  <div class="right-side">
+    <h2>Credit Card Details</h2>
+    <form [formGroup]="creditCardForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Credit Card Number</mat-label>
+        <input matInput formControlName="cardNumber" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Expiration Date</mat-label>
+        <input matInput formControlName="expirationDate" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CVV</mat-label>
+        <input matInput formControlName="cvv" required />
+      </mat-form-field>
+      <button
+        mat-button
+        color="primary"
+        type="submit"
+        [disabled]="creditCardForm.invalid"
+        (click)="submitOrders()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
