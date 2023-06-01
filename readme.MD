@@ -6,7 +6,7 @@
 docker compose up --build postgres adminer
 ```
 
-2. Next please cd into back folder to start the backend api.
+2. Next please cd into back folder to start the backend api. copy .env copy file into .env file
 
 ```
 cd back
@@ -14,7 +14,7 @@ npm run install
 npm run start
 ```
 
-3. Front end angular project is saved in front folder, please cd into that folder to install and launch the application.
+3. Front end angular project is saved in front folder, please cd into that folder to install and launch the application. copy .env copy file into .env file
 
 ```
 cd front
