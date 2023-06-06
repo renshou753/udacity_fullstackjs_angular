@@ -16,9 +16,22 @@
         />
 
         <mat-card-content class="card-right">
-          <p>
-            Price: ${{ order.product.price }}, Quantity: {{ order.quantity }}
-          </p>
+          <p>Price: ${{ order.product.price }}</p>
+          <mat-form-field>
+            <mat-label>Quantity</mat-label>
+            <mat-select
+              [(ngModel)]="order.quantity"
+              (ngModelChange)="onQuantityChange(order)"
+            >
+              <mat-option
+                *ngFor="let quantity of quantityOptions"
+                [value]="quantity"
+              >
+                {{ quantity }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <button mat-icon-button color="warn" (click)="removeFromCart(order)">
             <mat-icon>remove_shopping_cart</mat-icon>
           </button>

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { ProductsService } from '../products.service'
 import { Product } from '../product.interface'
+import { Order } from '../../cart/order.interface'
 import { environment } from '../../../environments/environment'
 
 @Component({
@@ -24,5 +25,17 @@ export class ProductListComponent {
         element.imageUrl = `${environment.apiUrl}/${element.name}.png`
       })
     })
+  }
+
+  addToCartEmitter(order: Order): void {
+    // Logic to add the card to the cart
+    // Retrieve existing cart items from local storage
+    const existingCartItems =
+      JSON.parse(localStorage.getItem('cartItems') as string) || []
+
+    existingCartItems.push(order)
+
+    // Update the cart items in local storage
+    localStorage.setItem('cartItems', JSON.stringify(existingCartItems))
   }
 }

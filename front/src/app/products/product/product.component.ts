@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Router } from '@angular/router'
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 import { Product } from '../product.interface'
+import { Order } from '../../cart/order.interface'
 
 @Component({
   selector: 'app-product',
@@ -16,6 +17,9 @@ export class ProductComponent {
   @Input() category: string
   @Input() imageUrl: string
 
+  // @Output decorator allows data to travel from child component to parent component
+  @Output() addToCartEmitter: EventEmitter<Order> = new EventEmitter()
+
   constructor(private router: Router, private snackBar: MatSnackBar) {
     this.id = 0
     this.name = ''
@@ -28,16 +32,10 @@ export class ProductComponent {
   quantity = 0
 
   addToCart() {
-    console.log(this.quantity)
     if (this.quantity === 0) {
       this.showSnackBar('please select a quantity')
       return
     }
-
-    // Logic to add the card to the cart
-    // Retrieve existing cart items from local storage
-    const existingCartItems =
-      JSON.parse(localStorage.getItem('cartItems') as string) || []
 
     // Add the selected product to the cart
     const selectedProduct: Product = {
@@ -48,10 +46,8 @@ export class ProductComponent {
       category: this.category,
     }
     const order = { product: selectedProduct, quantity: this.quantity }
-    existingCartItems.push(order)
 
-    // Update the cart items in local storage
-    localStorage.setItem('cartItems', JSON.stringify(existingCartItems))
+    this.addToCartEmitter.emit(order)
 
     this.showSnackBar('product added to shopping cart')
   }

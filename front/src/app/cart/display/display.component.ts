@@ -12,6 +12,7 @@ export class DisplayComponent implements OnInit {
   public orders: Order[] = []
   public creditCardForm: FormGroup
   public totalPrice: number = 0
+  quantityOptions = [1, 2, 3, 4, 5]
 
   constructor(private formBuilder: FormBuilder, private router: Router) {
     // Initialize the credit card form
@@ -52,6 +53,14 @@ export class DisplayComponent implements OnInit {
     }
 
     // Update the cart data in local storage
-    localStorage.setItem('cart', JSON.stringify(this.orders))
+    localStorage.setItem('cartItems', JSON.stringify(this.orders))
+  }
+
+  onQuantityChange(order: Order) {
+    // Handle quantity change for the specific product
+    const index = this.orders.indexOf(order)
+    this.orders[index].quantity = order.quantity
+    // Update the cart data in local storage
+    localStorage.setItem('cartItems', JSON.stringify(this.orders))
   }
 }

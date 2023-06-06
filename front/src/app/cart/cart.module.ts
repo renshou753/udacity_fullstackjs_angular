@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatCardModule } from '@angular/material/card'
 import { CartSuccessComponent } from './cart-success/cart-success.component'
 import { MatIconModule } from '@angular/material/icon'
+import { FormsModule } from '@angular/forms'
+import { MatSelectModule } from '@angular/material/select'
 
 @NgModule({
   declarations: [DisplayComponent, CartSuccessComponent],
@@ -19,6 +21,8 @@ import { MatIconModule } from '@angular/material/icon'
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
+    FormsModule,
+    MatSelectModule,
   ],
 })
 export class CartModule {}
